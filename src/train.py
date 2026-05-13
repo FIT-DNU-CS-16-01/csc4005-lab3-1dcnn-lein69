@@ -243,8 +243,14 @@ def main() -> None:
     use_wandb = args.use_wandb
     if use_wandb and wandb is None:
         raise RuntimeError('Bạn đang bật W&B nhưng chưa cài wandb. Hãy chạy: pip install wandb')
-    if use_wandb:
-        wandb.init(project=args.project, name=args.run_name, config=used_config, mode=args.wandb_mode)
+    wandb.init(
+        project=args.project,
+        entity="lein69",
+        name=args.run_name,
+        config=used_config,
+        mode=args.wandb_mode,
+        settings=wandb.Settings(init_timeout=300)
+    )
 
     history: list[dict[str, float]] = []
     early_stopper = EarlyStopping(patience=args.patience)
