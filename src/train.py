@@ -241,18 +241,25 @@ def main() -> None:
     save_json(used_config, output_dir / 'used_config.json')
 
     use_wandb = args.use_wandb
+
     if use_wandb and wandb is None:
-        raise RuntimeError('Bạn đang bật W&B nhưng chưa cài wandb. Hãy chạy: pip install wandb')
+        raise RuntimeError(
+            'Bạn đang bật W&B nhưng chưa cài wandb. Hãy chạy: pip install wandb'
+        )
+
+    # Disable wandb automatically in CI
     if os.environ.get("CI") == "true":
         use_wandb = False
-    wandb.init(
-        project=args.project,
-        entity="lein69",
-        name=args.run_name,
-        config=used_config,
-        mode=args.wandb_mode,
-        settings=wandb.Settings(init_timeout=300)
-    )
+
+    if use_wandb:
+        wandb.init(
+            project=args.project,
+            entity="lein69",
+            name=args.run_name,
+            config=used_config,
+            mode=args.wandb_mode,
+            settings=wandb.Settings(init_timeout=300)
+        )
 
     history: list[dict[str, float]] = []
     early_stopper = EarlyStopping(patience=args.patience)
