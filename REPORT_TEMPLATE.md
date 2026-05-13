@@ -2,9 +2,9 @@
 
 ## 1. Thông tin sinh viên
 
-- Họ tên: [Điền họ tên]
-- Mã sinh viên: [Điền mã số]
-- Lớp: [Điền lớp]
+- Họ tên: [Đặng Quốc An]
+- Mã sinh viên: [1675020001]
+- Lớp: [KHMT17-01]
 - Link GitHub repo: https://github.com/[your-username]/csc4005-lab3-1dcnn-lein69
 - Link W&B run/project: https://wandb.ai/[your-username]/csc4005-lab3-urbansound-1dcnn/runs/...
 
