@@ -243,6 +243,8 @@ def main() -> None:
     use_wandb = args.use_wandb
     if use_wandb and wandb is None:
         raise RuntimeError('Bạn đang bật W&B nhưng chưa cài wandb. Hãy chạy: pip install wandb')
+    if os.environ.get("CI") == "true":
+        use_wandb = False
     wandb.init(
         project=args.project,
         entity="lein69",
